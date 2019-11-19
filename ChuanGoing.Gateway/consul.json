@@ -1,0 +1,42 @@
+{
+  "services": [
+    {
+      "service": {
+        "id": "Sample1",
+        "name": "SampleApi",
+        "Tags": [
+          "SampleWebApi1",
+          "Api"
+        ],
+        "address": "localhost",
+        "port": 7001
+      }
+    },
+    {
+      "service": {
+        "id": "Sample2",
+        "name": "SampleApi",
+        "Tags": [
+          "SampleWebApi2",
+          "Api"
+        ],
+        "address": "localhost",
+        "port": 7002
+      }
+    },
+    {
+      "ID": "Product",
+      "Name": "ProductApi",
+      "Tags": [
+        "ProductWebApi",
+        "Api"
+      ],
+      "Address": "localhost",
+      "Port": 7003,
+      "Check": {
+        "HTTP": "http://localhost:7003/api/health",
+        "Interval": "10s"
+      }
+    }
+  ]
+}
