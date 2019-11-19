@@ -1,0 +1,57 @@
+{
+  "ReRoutes": [
+    //{
+    //  "DownstreamPathTemplate": "/api/XXX/Test",
+    //  "DownstreamScheme": "http",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 6000
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/api/Test",
+    //  "UpstreamHttpMethod": [ "Get" ]
+    //},
+    //{
+    //  "DownstreamPathTemplate": "/api/{everything}",
+    //  "DownstreamScheme": "http",
+    //  "UpstreamPathTemplate": "/WebApi/{everything}",
+    //  "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+    //  "ServiceName": "WebApi",
+    //  "LoadBalancer": "RoundRobin",
+    //  "UseServiceDiscovery": true
+    //},
+    {
+
+      "DownstreamPathTemplate": "/api/Counter",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/1",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Counter",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/2",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ]
+  //"GlobalConfiguration": {
+  //  "ServiceDiscoveryProvider": {
+  //    "Host": "localhost",
+  //    "Port": 8500,
+  //    "Type": "Consul"
+  //  }
+  //}
+}
