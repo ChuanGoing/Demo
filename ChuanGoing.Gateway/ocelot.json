@@ -45,13 +45,24 @@
       ],
       "UpstreamPathTemplate": "/api/2",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Counter",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/Sample",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ServiceName": "SampleApi",
+      //"LoadBalancer": "RoundRobin",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
     }
-  ]
-  //"GlobalConfiguration": {
-  //  "ServiceDiscoveryProvider": {
-  //    "Host": "localhost",
-  //    "Port": 8500,
-  //    "Type": "Consul"
-  //  }
-  //}
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
 }

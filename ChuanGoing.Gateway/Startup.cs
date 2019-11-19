@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Consul;
 
 namespace ChuanGoing.Gateway
 {
@@ -20,7 +21,7 @@ namespace ChuanGoing.Gateway
         {
             services.AddOcelot(new ConfigurationBuilder()
             .AddJsonFile("ocelot.json")
-            .Build());
+            .Build()).AddConsul();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
