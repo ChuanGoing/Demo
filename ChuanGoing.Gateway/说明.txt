@@ -4,6 +4,21 @@ echo '启动配置'
 consul agent -dev -config-dir='xxx\配置文件夹'
 
 /*
+##.ps1配置模板##
+
+echo '开始执行脚本'
+echo 'cd F:\10_Web\09_Gateway'
+F:
+cd F:\10_Web\09_Gateway
+echo '设置临时变量$env:ASPNETCORE_URLS="http://*:7000/"'
+$env:ASPNETCORE_URLS="http://*:7000/"
+echo '查看端口占用情况:netstat -ano|findstr "7000"'
+echo 'dotnet ChuanGoing.Gateway.dll API'
+dotnet F:\10_Web\09_Gateway\ChuanGoing.Gateway.dll
+
+*/
+
+/*
 
 {
   "services": [
