@@ -10,11 +10,10 @@ namespace ChuanGoing.AuthorizationServer
     {
         public static IEnumerable<ApiResource> GetApiResources()
         {
-            var res = new ApiResource("WebApi", "ChuanGoingWebApi");
-            //res.ApiSecrets.Add(new Secret("ApiSecret"));
             return new List<ApiResource>
             {
-                res
+                new ApiResource("WebApi", "ChuanGoingWebApi"),
+                new ApiResource("ProductApi", "ChuanGoingWebProduct")
             };
         }
 
@@ -40,7 +39,8 @@ namespace ChuanGoing.AuthorizationServer
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
-                    "WebApi"
+                    "WebApi",
+                    "ProductApi"
                 },
                     AccessTokenLifetime = 10 * 60 * 1
                 },

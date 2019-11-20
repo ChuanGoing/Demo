@@ -1,3 +1,10 @@
+echo 'consul 安装'
+echo '做好相关配置'
+echo '启动配置'
+consul agent -dev -config-dir='xxx\配置文件夹'
+
+/*
+
 {
   "services": [
     {
@@ -46,3 +53,6 @@
     }
   ]
 }
+
+
+*/
