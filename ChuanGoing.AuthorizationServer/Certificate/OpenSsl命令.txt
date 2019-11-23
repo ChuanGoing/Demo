@@ -1,0 +1,4 @@
+##生成密钥和证书
+openssl req -newkey rsa:2048 -nodes -keyout cas.clientservice.key -x509 -days 365 -out cas.clientservice.cer
+##生成签名文件(key+证书)
+openssl pkcs12 -export -in cas.clientservice.cer -inkey cas.clientservice.key -out cas.clientservice.pfx
