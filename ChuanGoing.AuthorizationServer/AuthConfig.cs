@@ -1,6 +1,7 @@
 ﻿using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -26,8 +27,9 @@ namespace ChuanGoing.AuthorizationServer
             };
         }
 
-        public static IEnumerable<Client> GetClients()
+        public static IEnumerable<Client> GetClients(IConfiguration Configuration)
         {
+            var OnlineConfig = Configuration.GetSection("OnlineClient");
             var List = new List<Client>
             {
                 new Client()
@@ -36,12 +38,12 @@ namespace ChuanGoing.AuthorizationServer
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("ClientSecret".Sha256()) },
                     AllowedScopes =
-                {
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,
-                    "WebApi",
-                    "ProductApi"
-                },
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "WebApi",
+                        "ProductApi"
+                    },
                     AccessTokenLifetime = 10 * 60 * 1
                 },
 
@@ -51,11 +53,11 @@ namespace ChuanGoing.AuthorizationServer
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     ClientSecrets = { new Secret("ClientSecret".Sha256()) },
                     AllowedScopes =
-                {
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,
-                    "WebApi"
-                },
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "WebApi"
+                    },
                     AccessTokenLifetime = 10 * 60 * 1
                 },
                 new Client()
@@ -63,16 +65,32 @@ namespace ChuanGoing.AuthorizationServer
                     ClientId = "Implicit",
                     ClientName = "ImplicitClient",
                     AllowedGrantTypes = GrantTypes.Implicit,
-                    ClientSecrets = { new Secret("ClientSecret".Sha256()) },
-                    RedirectUris = { "http://localhost:5020/signin-oidc" },
-                    PostLogoutRedirectUris = { "http://localhost:5020" },
+                    ClientSecrets = { new Secret("ImplicitSecret".Sha256()) },
+                    RedirectUris ={OnlineConfig.GetValue<string>("RedirectUris") },
+                    PostLogoutRedirectUris = {OnlineConfig.GetValue<string>("LogoutRedirectUris") },
                     AllowedScopes =
-                {
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,
-                    "WebApi"
-                },
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "WebApi"
+                    },
                     AccessTokenLifetime = 10 * 60 * 1
+                },
+                new Client()
+                {
+                   //客户端Id
+                    ClientId="GrantCode",
+                    ClientName="GrantCodeClient",
+                    //客户端密码
+                    ClientSecrets={new Secret("CodeSecret".Sha256()) },
+                    //客户端授权类型，Code:授权码模式
+                    AllowedGrantTypes=GrantTypes.Code,
+                    //允许登录后重定向的地址列表，可以有多个
+                     RedirectUris ={OnlineConfig.GetValue<string>("RedirectUris") }, 
+                    //允许访问的资源
+                    AllowedScopes={
+                        "WebApi"
+                    }
                 }
             };
             return List;
