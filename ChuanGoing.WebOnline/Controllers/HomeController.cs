@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ChuanGoing.WebOnline.Models;
 using Microsoft.AspNetCore.Mvc;
-using ChuanGoing.WebOnline.Models;
+using System.Diagnostics;
 
 namespace ChuanGoing.WebOnline.Controllers
 {
@@ -15,7 +11,7 @@ namespace ChuanGoing.WebOnline.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Live()
         {
             return View();
         }

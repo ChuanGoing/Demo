@@ -56,10 +56,14 @@ namespace ChuanGoing.AuthorizationServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "WebApi"
+                        "WebApi",
+                        "ProductApi"
                     },
                     AccessTokenLifetime = 10 * 60 * 1
                 },
+                  /*
+                  隐式模式:https://localhost:6005/connect/authorize?client_id=Implicit&redirect_uri=http://localhost:5000/Home&response_type=token&scope=WebApi
+                  */
                 new Client()
                 {
                     ClientId = "Implicit",
@@ -72,10 +76,16 @@ namespace ChuanGoing.AuthorizationServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "WebApi"
+                        "WebApi",
+                        "ProductApi"
                     },
-                    AccessTokenLifetime = 10 * 60 * 1
+                    AccessTokenLifetime = 10 * 60 * 1,
+                    //允许将token通过浏览器传递
+                     AllowAccessTokensViaBrowser=true
                 },
+                /*
+                 * 授权码模式:https://localhost:6005/connect/authorize?client_id=GrantCode&redirect_uri=http://localhost:5000/Home&response_type=code&scope=WebApi
+                 */
                 new Client()
                 {
                    //客户端Id
@@ -89,7 +99,8 @@ namespace ChuanGoing.AuthorizationServer
                      RedirectUris ={OnlineConfig.GetValue<string>("RedirectUris") }, 
                     //允许访问的资源
                     AllowedScopes={
-                        "WebApi"
+                        "WebApi",
+                        "ProductApi"
                     }
                 }
             };
@@ -126,6 +137,6 @@ namespace ChuanGoing.AuthorizationServer
                     }
                 }
             };
-        }
+        }      
     }
 }

@@ -9,5 +9,8 @@ namespace ChuanGoing.WebOnline.Models
 
         [Required(ErrorMessage = "用户密码不可以为空")]
         public string Password { get; set; }
+
+        public string Type { get; set; }
+        public string Code { get; set; }
     }
 }

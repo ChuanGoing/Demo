@@ -4,5 +4,29 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+    <div id="content"></div>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<script type="text/javascript">
+    var content = "";
+    window.onload = function () {
+        var url = window.location.href;
+
+        var array = url.split("#");
+        if (array.length > 1) {
+            content = array[1];
+            document.getElementById("content").innerHTML = content;
+        }
+        var search = window.location.search;
+        if (search) {
+            search = search.substr(1);
+            var paras = search.split("&");
+            paras.forEach(element => {
+                content += element;
+                content += ";"
+            });
+        }
+        document.getElementById("content").innerHTML = content;
+    }
+</script>

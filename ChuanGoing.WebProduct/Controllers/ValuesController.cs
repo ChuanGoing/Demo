@@ -13,9 +13,9 @@ namespace ChuanGoing.WebProduct.Controllers
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<string> Get()
         {
-            return new[] { "value1", "value2" };
+            return "This is ProductApi Authorize action result!";
         }
 
         [HttpGet("Count")]
