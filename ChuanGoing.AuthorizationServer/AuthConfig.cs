@@ -2,6 +2,7 @@
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -114,29 +115,29 @@ namespace ChuanGoing.AuthorizationServer
             {
                 new TestUser
                 {
-                    SubjectId = "1",
+                    SubjectId = Guid.NewGuid().ToString(),
                     Username = "admin",
-                    Password = "123456",
+                    Password = "123456"
 
-                    Claims = new List<Claim>
-                    {
-                        new Claim("name", "admin"),
-                        new Claim("website", "https://www.cnblogs.com/chuangoing")
-                    }
+                    //Claims = new List<Claim>
+                    //{
+                    //    new Claim("name", "admin"),
+                    //    new Claim("website", "https://www.cnblogs.com/chuangoing")
+                    //}
                 },
                 new TestUser
                 {
-                    SubjectId = "2",
+                    SubjectId = Guid.NewGuid().ToString(),
                     Username = "chuangoing",
-                    Password = "123456",
+                    Password = "123456"
 
-                    Claims = new List<Claim>
-                    {
-                        new Claim("name", "chuangoing"),
-                        new Claim("website", "https://github.com/chuangoing")
-                    }
+                    //Claims = new List<Claim>
+                    //{
+                    //    new Claim("name", "chuangoing"),
+                    //    new Claim("website", "https://github.com/chuangoing")
+                    //}
                 }
             };
-        }      
+        }
     }
 }
